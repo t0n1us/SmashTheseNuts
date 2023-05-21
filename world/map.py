@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 import pygame
+from player import Player
 
 
 class Map(ABC):
@@ -7,10 +8,13 @@ class Map(ABC):
     WINDOW_BACKGROUND_COLOR = (199, 125, 255)
     PLATFORM_COLOR = (90, 24, 154)
 
-    def __init__(self, window: pygame.Surface, window_w, window_h):
+    GRAVITY = 0.5  # px per seconds
+
+    def __init__(self, window: pygame.Surface, window_w, window_h, players: list[Player]):
         self.window = window
         self.width = window_w
         self.height = window_h
+        self.players = players
 
     @abstractmethod
     def _render_objects(self):
@@ -22,5 +26,9 @@ class Map(ABC):
                          (self.EDGE_WIDTH, self.height - 20, self.width - self.EDGE_WIDTH * 2, 20))
 
         self._render_objects()
+
+        for player in self.players:
+            player.set_position(player.posx, player.posy + self.GRAVITY)
+            player.render()
 
         pygame.display.flip()

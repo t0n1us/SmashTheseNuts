@@ -1,5 +1,6 @@
 import pygame
 from world.default1 import Default1
+from player import Player
 
 WINDOW_DIMSENSION_X = 800
 WINDOW_DIMSENSION_Y = 600
@@ -17,7 +18,10 @@ def run():
     pygame.display.set_caption(WINDOW_TITLE)
 
     running = True
-    map = Default1(window, WINDOW_DIMSENSION_X, WINDOW_DIMSENSION_Y)
+
+    players = [Player(window, 20, 50)]
+
+    map = Default1(window, WINDOW_DIMSENSION_X, WINDOW_DIMSENSION_Y, players)
 
     while running:
         for event in pygame.event.get():

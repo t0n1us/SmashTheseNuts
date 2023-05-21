@@ -3,8 +3,8 @@ from world.map import Map
 
 
 class Default1(Map):
-    def __init__(self, window: pygame.Surface, window_w, window_h):
-        super().__init__(window, window_w, window_h)
+    def __init__(self, window: pygame.Surface, window_w, window_h, players):
+        super().__init__(window, window_w, window_h, players)
 
     def _render_objects(self):
         platform_height = 200
