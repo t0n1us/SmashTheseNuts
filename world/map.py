@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 import pygame
-from player import Player
+from player.player import Player
+from world.object import Block
 
 
 class Map(ABC):
@@ -10,11 +11,12 @@ class Map(ABC):
 
     GRAVITY = 0.5  # px per seconds
 
-    def __init__(self, window: pygame.Surface, window_w, window_h, players: list[Player]):
+    def __init__(self, window: pygame.Surface, window_w, window_h, players: list[Player], blocks: list[Block]):
         self.window = window
         self.width = window_w
         self.height = window_h
         self.players = players
+        self.blocks = blocks
 
     @abstractmethod
     def _render_objects(self):
@@ -28,7 +30,7 @@ class Map(ABC):
         self._render_objects()
 
         for player in self.players:
-            player.set_position(player.posx, player.posy + self.GRAVITY)
+            player.set_position(player.posx, player.posy)
             player.render()
 
         pygame.display.flip()
