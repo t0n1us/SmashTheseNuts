@@ -24,8 +24,8 @@ class Map(ABC):
 
     def render(self):
         self.window.fill(self.WINDOW_BACKGROUND_COLOR)
-        pygame.draw.rect(self.window, self.PLATFORM_COLOR,
-                         (self.EDGE_WIDTH, self.height - 20, self.width - self.EDGE_WIDTH * 2, 20))
+        #pygame.draw.rect(self.window, self.PLATFORM_COLOR,
+                         #(self.EDGE_WIDTH, self.height - 20, self.width - self.EDGE_WIDTH * 2, 20))
 
         self._render_objects()
 

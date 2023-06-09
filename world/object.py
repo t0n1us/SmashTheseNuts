@@ -15,6 +15,5 @@ class Block:
         self.posy = posy
 
     def render(self):
-        pygame.draw.rect(self.window, (255, 255, 255), (self.posx, self.posy, self.size, 20))
-        pygame.display.update()
+        pygame.draw.rect(self.window, (255, 255, 255), (self.posx, self.posy, self.size, 30))
 
