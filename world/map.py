@@ -28,7 +28,7 @@ class Map(ABC):
                          #(self.EDGE_WIDTH, self.height - 20, self.width - self.EDGE_WIDTH * 2, 20))
 
         self._render_objects()
-
+        print('hello')
         for player in self.players:
             player.set_position(player.posx, player.posy)
             player.render()

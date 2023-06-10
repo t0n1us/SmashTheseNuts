@@ -19,7 +19,7 @@ class Player(ABC):
 
     def render(self):
         pygame.draw.rect(self.window, (255, 0, 0), (self.posx, self.posy, self.size, self.size))
-
+        print('hello')
     def set_position(self, posx, posy):
         self.posx = posx
         self.posy = posy

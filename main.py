@@ -40,7 +40,7 @@ def handle_gravity(player): #applies gravity to the player
         player.fall_count += 0.00007
         player.y_vel += player.fall_count
         player.posy += player.y_vel
-
+        print('hello')
 
 def arrow_direction(window, player):
 
