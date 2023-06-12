@@ -19,7 +19,6 @@ class Player(ABC):
 
     def render(self):
         pygame.draw.rect(self.window, (255, 0, 0), (self.posx, self.posy, self.size, self.size))
-        pygame.display.update()
 
     def set_position(self, posx, posy):
         self.posx = posx
@@ -41,5 +40,11 @@ class Player(ABC):
     def move_down(self):
         self.posy += self.y_vel
         self.vert_colision = False
+
+    def colision_reset(self, block):
+        self.set_position(self.posx, block.posy - self.size)
+        self.y_vel = 0
+        self.fall_count = 0
+        self.vert_colision = True
 
 
