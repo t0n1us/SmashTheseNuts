@@ -40,7 +40,7 @@ def handle_gravity(player): #applies gravity to the player
         player.fall_count += 0.00007
         player.y_vel += player.fall_count
         player.posy += player.y_vel
-        print('hello')
+
 
 def arrow_direction(window, player):
 
@@ -55,26 +55,27 @@ def handle_limits(window, player): #respawn player if he touches the outside lim
 
     if player.posy < 0 or player.posy > WINDOW_DIMSENSION_Y: #check if player is outside visible window in Y
 
-        if player.posy >= MAP_LIMIT_BOTTOM or player.posy <= MAP_LIMIT_TOP:
+        if player.posy >= MAP_LIMIT_BOTTOM or player.posy <= MAP_LIMIT_TOP: # check if player is outside the map
             player.set_position(700, 100)
             global OFFSET
             OFFSET = screen_shake(5, 40)
 
         else: # player not out but not visible (display an arrow)
             arrow_direction(window, player)
-            '''pygame.draw.polygon(window, (0, 0, 0),
-                                ((0, 100), (0, 200), (200, 200), (200, 300), (300, 150), (200, 0), (200, 100)))'''
+
+        return True
 
     elif player.posx < 0 or player.posx > WINDOW_DIMSENSION_X: #check if player is outside visible window in X
 
-        if player.posx >= MAP_LIMIT_RIGHT or player.posx <= MAP_LIMIT_LEFT:
+        if player.posx >= MAP_LIMIT_RIGHT or player.posx <= MAP_LIMIT_LEFT: # check if player is outside the map
             player.set_position(700, 100)
             OFFSET = screen_shake(5, 40)
 
         else: # player not out but not visible (display an arrow)
             arrow_direction(window, player)
-            '''pygame.draw.polygon(window, (0, 0, 0),
-                                ((0, 100), (0, 200), (200, 200), (200, 300), (300, 150), (200, 0), (200, 100)))'''
+
+        return True
+
     else:
         return False
 
@@ -83,7 +84,8 @@ def vertical_colision_detection(players: list[Player], blocks: list[Block], wind
     for player in players:
         #check is player is out of the map
 
-        handle_limits(window, player)
+        if handle_limits(window, player):
+            break
 
         '''if player.posy >= MAP_LIMIT_BOTTOM or player.posy <= MAP_LIMIT_TOP: #Mettre cette section si dans une fonction appart (would be clean)
             player.set_position(700, 100)

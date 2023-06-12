@@ -16,4 +16,4 @@ class Block:
 
     def render(self):
         pygame.draw.rect(self.window, (255, 255, 255), (self.posx, self.posy, self.size, 30))
-        print('hello')
+

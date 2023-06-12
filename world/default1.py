@@ -8,6 +8,6 @@ class Default1(Map):
 
     def _render_objects(self):
         platform_height = 200
-        print('hello')
+
         for blox in self.blocks:
             blox.render()
