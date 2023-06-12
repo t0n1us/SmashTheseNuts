@@ -55,27 +55,26 @@ def handle_limits(window, player): #respawn player if he touches the outside lim
 
     if player.posy < 0 or player.posy > WINDOW_DIMSENSION_Y: #check if player is outside visible window in Y
 
-        if player.posy >= MAP_LIMIT_BOTTOM or player.posy <= MAP_LIMIT_TOP: # check if player is outside the map
+        if player.posy >= MAP_LIMIT_BOTTOM or player.posy <= MAP_LIMIT_TOP:
             player.set_position(700, 100)
             global OFFSET
             OFFSET = screen_shake(5, 40)
 
         else: # player not out but not visible (display an arrow)
             arrow_direction(window, player)
-
-        return True
+            '''pygame.draw.polygon(window, (0, 0, 0),
+                                ((0, 100), (0, 200), (200, 200), (200, 300), (300, 150), (200, 0), (200, 100)))'''
 
     elif player.posx < 0 or player.posx > WINDOW_DIMSENSION_X: #check if player is outside visible window in X
 
-        if player.posx >= MAP_LIMIT_RIGHT or player.posx <= MAP_LIMIT_LEFT: # check if player is outside the map
+        if player.posx >= MAP_LIMIT_RIGHT or player.posx <= MAP_LIMIT_LEFT:
             player.set_position(700, 100)
             OFFSET = screen_shake(5, 40)
 
         else: # player not out but not visible (display an arrow)
             arrow_direction(window, player)
-
-        return True
-
+            '''pygame.draw.polygon(window, (0, 0, 0),
+                                ((0, 100), (0, 200), (200, 200), (200, 300), (300, 150), (200, 0), (200, 100)))'''
     else:
         return False
 
@@ -84,8 +83,7 @@ def vertical_colision_detection(players: list[Player], blocks: list[Block], wind
     for player in players:
         #check is player is out of the map
 
-        if handle_limits(window, player):
-            break
+        handle_limits(window, player)
 
         '''if player.posy >= MAP_LIMIT_BOTTOM or player.posy <= MAP_LIMIT_TOP: #Mettre cette section si dans une fonction appart (would be clean)
             player.set_position(700, 100)
