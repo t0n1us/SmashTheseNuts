@@ -41,6 +41,7 @@ def menu():
     pygame.display.set_caption("Menu")
     window = pygame.display.set_mode((WINDOW_DIMSENSION_X, WINDOW_DIMSENSION_Y))
     background = pygame.image.load("graphics/Background.png")
+    background = pygame.transform.scale(background, (WINDOW_DIMSENSION_X, WINDOW_DIMSENSION_Y))
     while True:
         window.blit(background, (0, 0))
 
@@ -87,6 +88,7 @@ def run():
     # Window stuff
     window = pygame.display.set_mode((WINDOW_DIMSENSION_X, WINDOW_DIMSENSION_Y))
     pygame.display.set_caption(WINDOW_TITLE)
+    window.fill("black")
 
     # Clock stuff
     clock = pygame.time.Clock()
