@@ -8,11 +8,17 @@ from player import PlayerManager
 WINDOW_DIMSENSION_X = 1400
 WINDOW_DIMSENSION_Y = 800
 WINDOW_TITLE = "Smash These Nuts"
-
+game_pause = False
 FPS = 999
 
 DEBUG_MODE = True
 
+
+
+
+def get_font(size):
+    pygame.font.init()
+    return pygame.font.SysFont('Comic Sans MS', size)
 
 def handle_move(player):
     keys = pygame.key.get_pressed()
@@ -69,7 +75,7 @@ def menu():
                 if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
                     run()
                 if OPTIONS_BUTTON.checkForInput(MENU_MOUSE_POS):
-                    pass
+                    options()
                 if QUIT_BUTTON.checkForInput(MENU_MOUSE_POS):
                     pygame.quit()
                     sys.exit()
@@ -80,15 +86,39 @@ def menu():
 def get_font(size):
     pygame.font.init()
     return pygame.font.SysFont('Comic Sans MS', size)
+def options():
+    pygame.display.set_caption("Options")
+    window = pygame.display.set_mode((WINDOW_DIMSENSION_X, WINDOW_DIMSENSION_Y))
+    while True:
+
+        OPTIONS_MOUSE_POS = pygame.mouse.get_pos()
+        window.fill("black")
+        back_img = pygame.image.load('graphics/button_back.png').convert_alpha()
+        back_button = Button(back_img, pos=(640, 460), text_input='', font=get_font(75),base_color="white", hovering_color="Green")
+        back_button.changeColor(OPTIONS_MOUSE_POS)
+        back_button.update(window)
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if back_button.checkForInput(OPTIONS_MOUSE_POS):
+                    menu()
+
+        pygame.display.update()
+
 
 
 def run():
+    global game_pause
     pygame.init()
 
     # Window stuff
     window = pygame.display.set_mode((WINDOW_DIMSENSION_X, WINDOW_DIMSENSION_Y))
     pygame.display.set_caption(WINDOW_TITLE)
     window.fill("black")
+
 
     # Clock stuff
     clock = pygame.time.Clock()
@@ -105,9 +135,14 @@ def run():
     while running:
         dt = clock.tick(FPS)  # dt is used to get the relative time difference
 
+
         for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    options()
             if event.type == pygame.QUIT:
-                running = False
+                pygame.quit()
+                sys.exit()
 
         game_map.render()
 
