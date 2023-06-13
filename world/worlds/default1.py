@@ -1,6 +1,6 @@
 import pygame
 from world.map import Map
-from world.object import Block
+from world.objects.block import Block
 
 
 class Default1(Map):

@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 import pygame
 from player.player import Player
-from world.object import Block
+from world.objects.block import Block
 from itertools import repeat
 
 
@@ -19,11 +19,11 @@ class Map(ABC):
     CENTER_X = -1  # Cannot set a value without the window size
     CENTER_Y = -1  # Cannot set a value without the window size
 
-    GRAVITY = 0.5  # px per seconds
+    GRAVITY = -1  # px per seconds
 
     OFFSET = repeat((0, 0))  # idk what this does but it is for the screen shake
 
-    def __init__(self, window: pygame.Surface, window_w, window_h, players: list[Player]):
+    def __init__(self, window: pygame.Surface, window_w, window_h, players: list[Player], gravity=0.5):
         self.window = window
         self.width = window_w
         self.height = window_h
@@ -34,6 +34,8 @@ class Map(ABC):
 
         self.CENTER_X = window_w // 2
         self.CENTER_Y = window_h // 2
+
+        self.GRAVITY = gravity
 
     @abstractmethod
     def _render_objects(self):
@@ -46,8 +48,6 @@ class Map(ABC):
         for player in self.players:
             player.set_position(player.posx, player.posy)
             player.render()
-
-        # pygame.display.flip()
 
         self.window.blit(self.window, next(self.OFFSET))
 
@@ -101,7 +101,6 @@ class Map(ABC):
             if player.posy >= self.MAP_LIMIT_BOTTOM or player.posy <= self.MAP_LIMIT_TOP:
                 player.set_position(700, 100)
                 self.OFFSET = self._screen_shake(5, 40)
-
             else:  # player not out but not visible (display an arrow)
                 self._arrow_direction(player)
                 '''pygame.draw.polygon(window, (0, 0, 0),

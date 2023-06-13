@@ -1,6 +1,6 @@
 from abc import ABC
 import pygame
-from world.object import Block
+from world.objects.block import Block
 
 
 class Player(ABC):
@@ -17,6 +17,8 @@ class Player(ABC):
         self.window = window
         self.vert_colision = False
         self.last_blocked_touched: Block = None
+
+        self.is_ai_controlled = ai_controlled
 
     def render(self):
         pygame.draw.rect(self.window, (255, 0, 0), (self.posx, self.posy, self.size, self.size))
