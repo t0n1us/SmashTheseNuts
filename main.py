@@ -93,7 +93,7 @@ def options():
 
         OPTIONS_MOUSE_POS = pygame.mouse.get_pos()
         window.fill("black")
-        back_img = pygame.image.load('graphics/button_back.png').convert_alpha()
+        back_img = pygame.image.load('graphics/assets/menu/button_back.png').convert_alpha()
         back_button = Button(back_img, pos=(640, 460), text_input='', font=get_font(75),base_color="white", hovering_color="Green")
         back_button.changeColor(OPTIONS_MOUSE_POS)
         back_button.update(window)
