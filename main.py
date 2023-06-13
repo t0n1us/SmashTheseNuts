@@ -5,8 +5,6 @@ from world.map import Map
 from player.player import Player
 from player import PlayerManager
 
-
-
 WINDOW_DIMSENSION_X = 1400
 WINDOW_DIMSENSION_Y = 800
 WINDOW_TITLE = "Smash These Nuts"
@@ -40,7 +38,7 @@ def menu():
     # screen setting
     pygame.display.set_caption("Menu")
     window = pygame.display.set_mode((WINDOW_DIMSENSION_X, WINDOW_DIMSENSION_Y))
-    background = pygame.image.load("graphics/Background.png")
+    background = pygame.image.load("graphics/assets/menu/Background.png")
     background = pygame.transform.scale(background, (WINDOW_DIMSENSION_X, WINDOW_DIMSENSION_Y))
     while True:
         window.blit(background, (0, 0))
@@ -50,11 +48,11 @@ def menu():
         MENU_TEXT = get_font(100).render("MAIN MENU", True, "#b68f40")
         MENU_RECT = MENU_TEXT.get_rect(center=(640, 100))
 
-        PLAY_BUTTON = Button(image=pygame.image.load("graphics/Play_Rect.png"), pos=(640, 250),
+        PLAY_BUTTON = Button(image=pygame.image.load("graphics/assets/menu/Play_Rect.png"), pos=(640, 250),
                              text_input="PLAY", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
-        OPTIONS_BUTTON = Button(image=pygame.image.load("graphics/Options_Rect.png"), pos=(640, 400),
+        OPTIONS_BUTTON = Button(image=pygame.image.load("graphics/assets/menu/Options_Rect.png"), pos=(640, 400),
                                 text_input="OPTIONS", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
-        QUIT_BUTTON = Button(image=pygame.image.load("graphics/Quit_Rect.png"), pos=(640, 550),
+        QUIT_BUTTON = Button(image=pygame.image.load("graphics/assets/menu/Quit_Rect.png"), pos=(640, 550),
                              text_input="QUIT", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
 
         window.blit(MENU_TEXT, MENU_RECT)
@@ -78,9 +76,11 @@ def menu():
 
         pygame.display.update()
 
+
 def get_font(size):
     pygame.font.init()
     return pygame.font.SysFont('Comic Sans MS', size)
+
 
 def run():
     pygame.init()
@@ -98,7 +98,7 @@ def run():
 
     running = True
 
-    players = [Player(window, 400, 50, 40), Player(window, 400, 50, 40, ai_controlled=True)]
+    players = [Player(window, 400, 50, 40), Player(window, 500, 50, 40, ai_controlled=True)]
 
     game_map: Map = Default1(window, WINDOW_DIMSENSION_X, WINDOW_DIMSENSION_Y, players)
 
@@ -121,7 +121,6 @@ def run():
         game_map.vertical_colision_detection()
 
         pygame.display.flip()  # The only flip we need
-
 
 
 if __name__ == "__main__":
