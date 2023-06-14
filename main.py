@@ -1,4 +1,4 @@
-import pygame, sys
+import pygame
 
 import graphics.menu
 from graphics.menu import *
@@ -14,6 +14,7 @@ game_pause = False
 FPS = 999
 
 DEBUG_MODE = True
+
 
 def handle_move(player):
     keys = pygame.key.get_pressed()
@@ -35,11 +36,6 @@ def handle_gravity(player):  # applies gravity to the player
         player.posy += player.y_vel
 
 
-
-
-
-
-
 def run():
     global game_pause
     pygame.init()
@@ -48,7 +44,6 @@ def run():
     window = pygame.display.set_mode((WINDOW_DIMSENSION_X, WINDOW_DIMSENSION_Y))
     pygame.display.set_caption(WINDOW_TITLE)
     window.fill("black")
-
 
     # Clock stuff
     clock = pygame.time.Clock()
@@ -64,7 +59,6 @@ def run():
 
     while running:
         dt = clock.tick(FPS)  # dt is used to get the relative time difference
-
 
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
