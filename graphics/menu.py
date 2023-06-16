@@ -26,12 +26,12 @@ def menu():
         MENU_TEXT = get_font(100).render("MAIN MENU", True, "#b68f40")
         MENU_RECT = MENU_TEXT.get_rect(center=(640, 100))
 
-        PLAY_BUTTON = Button(image=pygame.image.load("graphics/assets/menu/Play_Rect.png"), pos=(640, 250),
-                             text_input="PLAY", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
-        OPTIONS_BUTTON = Button(image=pygame.image.load("graphics/assets/menu/Options_Rect.png"), pos=(640, 400),
-                                text_input="OPTIONS", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
-        QUIT_BUTTON = Button(image=pygame.image.load("graphics/assets/menu/Quit_Rect.png"), pos=(640, 550),
-                             text_input="QUIT", font=get_font(75), base_color="#d7fcd4", hovering_color="White")
+        PLAY_BUTTON = Button(image=pygame.image.load("graphics/assets/menu/Play_Rect.png"), pos=(WINDOW_DIMSENSION_X/2, 250),
+                             text_input="PLAY", font=get_font(75), base_color="#FFFFFF", hovering_color="lightgreen")
+        OPTIONS_BUTTON = Button(image=pygame.image.load("graphics/assets/menu/Options_Rect.png"), pos=(WINDOW_DIMSENSION_X/2, 400),
+                                text_input="OPTIONS", font=get_font(75), base_color="#FFFFFF", hovering_color="orange")
+        QUIT_BUTTON = Button(image=pygame.image.load("graphics/assets/menu/Quit_Rect.png"), pos=(WINDOW_DIMSENSION_X/2, 550),
+                             text_input="QUIT", font=get_font(75), base_color="#FFFFFF", hovering_color="red")
 
         window.blit(MENU_TEXT, MENU_RECT)
 
@@ -67,7 +67,7 @@ def options():
         audio_img = pygame.image.load('graphics/assets/menu/button_audio.png')
 
         # button
-        back_button = Button(back_img, pos=(640, 460), text_input='', font=get_font(75), base_color="white",
+        back_button = Button(back_img, pos=(WINDOW_DIMSENSION_X/2, 500), text_input='', font=get_font(75), base_color="white",
                              hovering_color="Green")
 
         back_button.changeColor(OPTIONS_MOUSE_POS)
@@ -82,3 +82,9 @@ def options():
                     menu()
 
         pygame.display.update()
+
+def nbOfPlayer():
+    pass
+
+def mapSelection():
+    pass
